@@ -178,7 +178,7 @@ export const allproducts =[
         contactInfo:"8943871306"
     },
 
-//hdjhhgfhgfhdgfhjgruig
+//hdjhhgfhgfhdgfhjgruighhdgggggggggggggggggggggggggggggggggggggg
 ]
 
 //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
