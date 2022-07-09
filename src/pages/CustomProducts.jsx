@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import LoginNavbar from '../components/LoginNavbar';
 import SpecificProducts from '../components/SpecificProducts';
 import { mobile } from '../Responsive';
+import { useLocation } from 'react-router-dom';
+import {useState} from 'react'
 
 const Container = styled.div`
  padding-top:0px;
@@ -36,6 +38,20 @@ const Option = styled.option`
   
 `
 const CustomProducts = () => {
+
+  const location =useLocation()
+  const subcat = location.pathname.split("/")[2]
+  const [filters,setFilters] = useState({})
+  const [sort , setSort] =useState("newest")
+  // console.log(subcat);
+
+  const handleFilters = (e) =>{
+    const value = e.target.value 
+    setFilters({
+        [e.target.name]:value
+    })
+  }
+  console.log(filters)
  
   return (
     <Container>
@@ -44,7 +60,7 @@ const CustomProducts = () => {
       <FilterContainer>
            <Filter>
              <FilterText>Filter Products:</FilterText>
-             <Select name="Locality">
+             <Select name="Locality" onChange={handleFilters}>
              <Option value="">
               Locality
             </Option>
@@ -65,14 +81,14 @@ const CustomProducts = () => {
              </Filter>
            <Filter>
              <FilterText>Sort Products:</FilterText>
-             <Select>
+             <Select onChange={(e)=>setSort(e.target.value)}>
             <Option value="newest">Newest</Option>
             <Option value="asc">Price (asc)</Option>
             <Option value="desc">Price (desc)</Option>
           </Select>
              </Filter>
       </FilterContainer>
-      <SpecificProducts/>
+      <SpecificProducts subcat={subcat} filters={filters} sort = {sort}/>
       <Footer/>
     </Container>
   )

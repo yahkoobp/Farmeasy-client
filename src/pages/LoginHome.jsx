@@ -6,7 +6,7 @@ import Categories from '../components/Categories'
 import Queries from '../components/Queries'
 import Footer from '../components/Footer'
 import Products from '../components/Products'
-const LoginHome = () => {
+const LoginHome = ({basketQuantity}) => {
   return (
     <div>
         <LoginNavbar/>

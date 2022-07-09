@@ -82,7 +82,7 @@ const Introduction = ()=> {
     <Container>
        <Wrapper>
           <IntroContainer>
-          <Intro>Lorem ipsum dolor sit amet consectetur adipisicing elit</Intro>
+          <Intro>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero et anim</Intro>
           </IntroContainer>
           <SideImgContainer>
           <SideImg src=""></SideImg>

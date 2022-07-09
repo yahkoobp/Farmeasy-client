@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { mobile } from '../Responsive';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import {login} from "../redux/apiCalls"
+import {useDispatch,useSelector} from "react-redux"
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     width:100vw;
@@ -47,6 +51,11 @@ const Button = styled.button`
     margin-bottom: 10px;
 
 `
+const Error = styled.span`
+    color:red;
+    font-size: 14px;
+    text-align: center;
+`
 const Links = styled.div`
     width:100%;
     display:flex;
@@ -61,16 +70,30 @@ const Options = styled.a`
 `
 
 const Login = () => {
+
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {isFetching , isError, logged} = useSelector((state)=>state.user)
+     
+
+    const handleSubmit =  (e)=>{
+        e.preventDefault()
+        login(dispatch,{email,password})
+        logged && navigate("/home")
+        
+        
+    }
   return (
     <Container> 
     <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-            <Input type="email" placeholder='Email' required autoFocus/>
-            <Input type="password" placeholder='Password' required/>
-             <Link to="/home">
-            <Button>LOGIN</Button>
-            </Link>
+        <Form onSubmit={handleSubmit}>
+            <Input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder='Email' required autoFocus/>
+            <Input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='Password' required/>
+            <Button type="submit">LOGIN</Button>
+            { isError ? <Error>Invalid username or password</Error>:<></>}
             <Links>
             <Options>Forgot Password?</Options>
             <Options>Create a new account</Options>

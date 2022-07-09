@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import LoginNavbar from '../components/LoginNavbar';
 import Products from '../components/Products';
 import { mobile } from '../Responsive';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
  padding-top:0px;
@@ -36,11 +37,15 @@ const Option = styled.option`
   
 `
 const AllProducts = () => {
+
+const location = useLocation()
+const cat = location.pathname.split("/")[1]
+console.log(cat)
  
   return (
     <Container>
         <LoginNavbar/>
-      <Title>All Products</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
            <Filter>
              <FilterText>Filter Products:</FilterText>
@@ -62,7 +67,7 @@ const AllProducts = () => {
           </Select>
              </Filter>
       </FilterContainer>
-      <Products/>
+      <Products cat={cat}/>
       <Footer/>
     </Container>
   )

@@ -72,10 +72,11 @@ const Icon = styled.div`
 `
 
 const Product = ({item}) => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     // setInterval(() => {
     //        navigate("/")
     //   }, 5000);
+    // console.log(item.subcat)
   return  (
 
   <Container>
@@ -83,11 +84,13 @@ const Product = ({item}) => {
     <Image src={item.image}/>
     <Info>
          <h2 style={{color:"white"}}>{item.title}</h2>
-         <Icon onClick={()=>navigate("/specific-products")}>
+         <Link to ={`/${item.category}/${item.subcat}`}>
+         <Icon>
             {/* <Link to="/specific-products"> */}
             <SearchOutlined/>
             {/* </Link> */}
         </Icon>
+        </Link>
     </Info>
   </Container>
   )

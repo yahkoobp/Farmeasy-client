@@ -42,13 +42,13 @@ const CategoryItem = ({item}) => {
   return (
   <div> 
      <Container>
+        <Link to={`/${item.title}`}>
       <Image src={item.image}/>
       <Info>
           <Title>{item.title}</Title>
-          <Link to="/all-products">
           <Button>BUY NOW</Button>
-          </Link>
       </Info>
+      </Link>
       
      </Container>
   </div>

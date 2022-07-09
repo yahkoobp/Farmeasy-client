@@ -27,7 +27,7 @@ export const categories = [
     },
     {
         id:2,
-        title:"Fruits",
+        title:"fruits",
         image:"https://images.pexels.com/photos/1300975/pexels-photo-1300975.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         desc:"Something"
     },
@@ -113,72 +113,70 @@ export const allproducts =[
         address :"Pattikkad , kannur",
         contactInfo:"8943871306"
     },
-    {
-        id:3,
-        cat:"Fruits",
-        subcat:"Pineapple",
-        details:"",
-        price :"50 rs",
-        seller:"Mridhul A k",
-        address :"Andheri , kozhikkode",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
-    {
-        id:4,
-        cat:"Vegitables",
-        subcat:"Potato",
-        price :"30rs",
-        seller:"Yahkoob P",
-        address :"Pulikkal (h) , elamkulam , Malappuram",
-        contactInfo:"8943871306"
-    },
+    // {
+    //     id:3,
+    //     cat:"Fruits",
+    //     subcat:"Pineapple",
+    //     details:"",
+    //     price :"50 rs",
+    //     seller:"Mridhul A k",
+    //     address :"Andheri , kozhikkode",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
+    // {
+    //     id:4,
+    //     cat:"Vegitables",
+    //     subcat:"Potato",
+    //     price :"30rs",
+    //     seller:"Yahkoob P",
+    //     address :"Pulikkal (h) , elamkulam , Malappuram",
+    //     contactInfo:"8943871306"
+    // },
 
-//hdjhhgfhgfhdgfhjgruighhdgggggggggggggggggggggggggggggggggggggg
 ]
-
-//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
+//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

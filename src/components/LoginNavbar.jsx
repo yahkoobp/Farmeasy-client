@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mobile } from '../Responsive';
 import NavMenu from './NavMenu';
-
+import {useDispatch,useSelector} from "react-redux"
+import { useNavigate } from 'react-router-dom';
+import { logout } from "../redux/userRedux"
+import { logOut } from '../redux/basketRedux';
+import { useEffect } from 'react';
 
 const Container = styled.div`
     display:flex;
@@ -84,7 +88,7 @@ flex:1;
 display :flex;
 align-items: center;
 justify-content: flex-end;
-margin:0px 0px;
+margin:10px 20px;
 ${mobile({flex:2,justifyContent:"center"})}
 `
 const Options=styled.div`
@@ -120,9 +124,9 @@ const OptionsContainer = styled.div`
 `
 
 
-const Name=styled.h5`
+const Name=styled.div`
   color:white;
-  font-size:15px;
+  font-size:18px;
   cursor: pointer;
   &:hover / TableContainer{
       display: none;
@@ -133,7 +137,8 @@ const MenuItem = styled.div`
   color:white;
   font-size: 14px;
   cursor: pointer;
-  margin-left: 30px;
+  margin :0px 10px;
+  /* margin-left: 30px; */
   ${mobile({fontSize:"12px" , marginLeft:"10px"})}
 `
 
@@ -168,7 +173,24 @@ font-size: 17px;
 margin:2px 8px;
 cursor: pointer;
 `
-const LoginNavbar = () => {
+const LoginNavbar = ({basketQuantity}) => {
+  const user = useSelector((state)=>state.user.currentUser)
+  const quantity = useSelector((state)=>state.basket.quantity)
+  const name = user.data.firstname
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const basket = useSelector((state)=>state.basket)
+  const products = basket.products
+  // const basketCount = basket.quantity
+  
+  
+
+  const clickHandler = (e)=>{
+    e.preventDefault()
+    dispatch(logout())
+    dispatch(logOut({basketQuantity}))
+    navigate("/")
+  }
   return (
     <div>
       <Container>
@@ -186,7 +208,7 @@ const LoginNavbar = () => {
              <Right>
               <Options>
                 <OptionsContainer>
-              <Name>YAHKOOB</Name>
+              <Name>Welcome  {name}</Name>
               
               </OptionsContainer>
               <ArrowDropDownOutlined style={{color:"white"}}/>
@@ -196,17 +218,14 @@ const LoginNavbar = () => {
               </Link>
               <MenuItem>
               <Link to="/bag" style={{textDecoration:"none"}}>
-              <Badge style={{marginRight:"120px"}}badgeContent={4} color="primary">
+              <Badge style={{}}badgeContent={quantity} color="primary">
                 <ShoppingCartOutlined style={{color:"white"}}/>
               </Badge>
               </Link>
               </MenuItem>
+              <MenuItem onClick={clickHandler}>LOGOUT</MenuItem>
              </Right>
          </Wrapper>
-         {/* <Menu>
-                <NavMenu/>
-              </Menu> */}
-     
          
     </Container>
                
