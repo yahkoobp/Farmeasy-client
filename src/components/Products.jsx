@@ -48,7 +48,7 @@ const Products = ({cat}) => {
     <Text>Explore Products</Text>
       <ProductContainer>
        {
-       products.map(item =>(
+       products.slice(0,8).map(item =>(
             <Product item={item} key={item.id}/>
         ))}
       </ProductContainer>

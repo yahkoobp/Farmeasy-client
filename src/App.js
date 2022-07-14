@@ -1,3 +1,4 @@
+import "./App.css"
 import LoginNavbar from "./components/LoginNavbar";
 import Navbar from "./components/Navbar";
 import NavMenu from "./components/NavMenu";
@@ -14,7 +15,7 @@ import {
 } from "react-router-dom";
 import Seller from "./pages/SellerRequest";
 import Products from "./components/Products";
-import Product from "./components/Product";
+// import Product from "./components/Product";
 import Bag from "./pages/Bag";
 import AllProducts from "./pages/AllProducts";
 import CustomProducts from "./pages/CustomProducts";
@@ -23,10 +24,20 @@ import Orders from "./pages/Orders";
 import SellerRequest from "./pages/SellerRequest";
 import axios from "axios"
 import {useState,useEffect} from "react"
-import Topbar from "./Admin/components/Topbar";
+import Topbar from "./Admin/components/topbar/Topbar";
+import Sidebar from "./Admin/components/sidebar/Sidebar";
+import SellerHome from "./Admin/pages/home/SellerHome"
+import UserList from "./Admin/pages/userList/UserList";
+import User from "./Admin/pages/user/User";
+import NewUser from "./Admin/pages/newUser/NewUser";
+import ProductList from "./Admin/pages/productList/ProductList";
+import Product from "./Admin/pages/product/Product"
+import NewProduct from "./Admin/pages/newProduct/newProduct";
+import RatingComponent from "./components/RatingComponent";
 
 function App() {
   const user = useSelector((state)=>state.user.currentUser)
+  const admin =false
   // const user_id = user._id
   // const basket =useSelector((state)=>state.basket)
   // const basketCount = basket.quantity
@@ -51,7 +62,8 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
+
+          <Routes>
         <Route path="/" element={user ?<LoginHome/> :<Home/>}/>
         <Route path="/login" element={user?<Navigate to="/home"/> :<Login/>}/>
         <Route path="/register" element={user?<Navigate to="/home"/> :<Register/>}/>
@@ -62,10 +74,18 @@ function App() {
         <Route path="/:category/:subcat" element={user ?<CustomProducts/>:<Navigate to="/"/>}/>
         <Route path="/single-product/:id" element={user ?<SingleProduct/>:<Navigate to="/"/>}/>
         <Route path="/orders" element={user ?<Orders/>:<Navigate to="/"/>}/>
-      </Routes>
-        {/* <Topbar/> */}
-      
-    </div>
+        
+          {/* <Route path="/seller" element={<SellerHome/>}/>
+          <Route path="/users" element={<UserList/>}/>
+          <Route path="/user/:id" element={<User/>}/>
+          <Route path="/newUser" element={<NewUser/>}/> */}
+          <Route path="/seller" element={<ProductList/>}/>
+          <Route path="/product/:id" element={<Product/>}/>
+          <Route path="/newProduct" element={<NewProduct/>}/>
+          <Route path="/rating" element={<RatingComponent/>}/>
+
+          </Routes>
+        </div>
   );
 }
 

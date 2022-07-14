@@ -31,7 +31,7 @@ const SpecificProducts = ({subcat,filters,sort}) => {
            `http://localhost:5000/api/product/subcat/?subcat=${subcat}`
            :"http://localhost:5000/api/product"
          )
-         console.log(res.data)
+        //  console.log(res.data)
          setProducts(res.data)
         
        } 
@@ -50,10 +50,10 @@ const SpecificProducts = ({subcat,filters,sort}) => {
           )
           )
       )
-      // console.log(filteredproducts)
+      console.log(filteredproducts)
   },[subcat,filters,products])
 
-  console.log(filteredproducts)
+  // console.log(filteredproducts)
     
 
   useEffect(() => {

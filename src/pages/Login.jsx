@@ -96,7 +96,9 @@ const Login = () => {
             { isError ? <Error>Invalid username or password</Error>:<></>}
             <Links>
             <Options>Forgot Password?</Options>
+            <Link to ="/register">
             <Options>Create a new account</Options>
+            </Link>
             </Links>
             
         </Form>

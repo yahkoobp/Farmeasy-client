@@ -195,7 +195,7 @@ const SingleProduct = () => {
          <InfoContainer>
              <Title>{product.title}</Title>
              <Desc></Desc>
-             <Price>{product.price}</Price>
+             <Price>{product.price * quantity}</Price>
             
              <AddContainer>
                  <AmountContainer>

@@ -200,8 +200,6 @@ const Bag = () => {
       const res = await axios.get(`http://localhost:5000/api/basket/find/${user_id}`)
       console.log(res)
       setBag(res.data.cartProducts)
-      setTotal(res.data.cartProducts.price * res.data.cartProducts.quantity)
-      console.log(total)
     } catch (error) {
       console.log(error)
     }
@@ -222,10 +220,7 @@ const Bag = () => {
       <LoginNavbar/>
       <Wrapper>
           <Title>YOUR BASKET</Title>
-          {/* <Top>
-              <TopButton>CONTINUE SHOPPING</TopButton>
-              <TopButton type='filled'>CHECKOUT NOW</TopButton>
-          </Top> */}
+         
           <Bottom>
               <Info>
                   {bag.map(product=>(

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { mobile } from '../Responsive';
 import { Visibility } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     width:100vw;
@@ -73,13 +76,25 @@ const Button = styled.button`
 
 const SellerRequest = () => {
 
-
+const navigate = useNavigate()
+const user = useSelector((state)=>state.user.currentUser)
+const u_id=user.data._id
+console.log(user.data)
 const handleSubmit = (e)=>{
     e.preventDefault()
     const data=new FormData(e.target)
     // console.log(Object.fromEntries(data.entries()))
     const finalData=Object.fromEntries(data.entries())
-    console.log(finalData.password)
+    console.log(finalData)
+
+    axios.post('http://localhost:5000/api/seller/seller-register',{...finalData,u_id})
+    .then((res) => {
+        console.log(res.data)
+    }).catch((error) => {
+        console.log(error.response.data)
+    });
+
+    navigate("/login")
 
 }
   return (
@@ -87,9 +102,9 @@ const handleSubmit = (e)=>{
             <Wrapper>
                 <Title>APPLICATION FORM</Title>
                 <Form onSubmit={handleSubmit}>
-                    <Input name="firstname" placeholder='First Name' required pattern='^[a-zA-Z]{3,16}$'/>
-                    <Input name="lastname" placeholder='Last Name' required pattern='^[a-zA-Z]{1,16}$' />
-                    <Input type="email" name="email" placeholder='Email' required/>                
+                    <Input name="firstname" value={user.data.firstname} required pattern='^[a-zA-Z]{3,16}$'/>
+                    <Input name="lastname" value={user.data.lastname} required pattern='^[a-zA-Z]{1,16}$' />
+                    <Input type="email" name="email" value={user.data.email} required/>                
                     <Input name="address" type="text" placeholder='address' required/>
                     <TextArea name="details" placeholder='details about your organic farming'/>
                     <Select name ="city" required>
