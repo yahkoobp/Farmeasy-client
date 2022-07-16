@@ -137,7 +137,7 @@ const MenuItem = styled.div`
   color:white;
   font-size: 14px;
   cursor: pointer;
-  margin :0px 10px;
+  margin :0px 18px;
   /* margin-left: 30px; */
   ${mobile({fontSize:"12px" , marginLeft:"10px"})}
 `
@@ -173,14 +173,13 @@ font-size: 17px;
 margin:2px 8px;
 cursor: pointer;
 `
-const LoginNavbar = ({basketQuantity}) => {
+const LoginNavbar = () => {
   const user = useSelector((state)=>state.user.currentUser)
   const quantity = useSelector((state)=>state.basket.quantity)
   const name = user.data.firstname
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const basket = useSelector((state)=>state.basket)
-  const products = basket.products
+
   // const basketCount = basket.quantity
   
   
@@ -188,7 +187,7 @@ const LoginNavbar = ({basketQuantity}) => {
   const clickHandler = (e)=>{
     e.preventDefault()
     dispatch(logout())
-    dispatch(logOut({basketQuantity}))
+    dispatch(logOut())
     navigate("/")
   }
   return (
@@ -200,15 +199,16 @@ const LoginNavbar = ({basketQuantity}) => {
               <LogoImg src="https://i.pinimg.com/originals/68/92/71/689271e6223bf1ef1e8d70a257d2384b.jpg"></LogoImg>
               </LogoContainer>
              <SearchContainer>
-               <Input placeholder='Search'></Input>
-               <Search style={{color:"teal" ,fontsize:"20",marginLeft:"0px",backgroundColor:"white",height:"37px",cursor:"pointer",padding:"0px 7px"}}/>
+               {/* <Input placeholder='Search'></Input>
+               <Search style={{color:"teal" ,fontsize:"20",marginLeft:"0px",backgroundColor:"white",height:"37px",cursor:"pointer",padding:"0px 7px"}}/> */}
+               
              </SearchContainer>
              </Left>
              <Center><Logo>FarmEasy</Logo></Center>
              <Right>
               <Options>
                 <OptionsContainer>
-              <Name>Welcome  {name}</Name>
+              <Name>{name}</Name>
               
               </OptionsContainer>
               <ArrowDropDownOutlined style={{color:"white"}}/>
@@ -223,6 +223,9 @@ const LoginNavbar = ({basketQuantity}) => {
               </Badge>
               </Link>
               </MenuItem>
+              <Link to ="/orders">
+              <MenuItem>ORDERS</MenuItem>
+              </Link>
               <MenuItem onClick={clickHandler}>LOGOUT</MenuItem>
              </Right>
          </Wrapper>

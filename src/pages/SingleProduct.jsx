@@ -90,6 +90,7 @@ const Button = styled.button`
 
     &:hover{
         background-color: #f8f4f4;
+        border-radius: 20px;
     }
 `
 
@@ -108,6 +109,7 @@ const SingleProduct = () => {
     /* const basketQuantity = basket.quantity */
     const dispatch = useDispatch()
     const [basketQuantity,setBasketQuantity] = useState(0)
+    const [bag,setBag]=useState([])
 
     /* console.log(user_id) */
     const basket = useSelector((state)=>state.basket)
@@ -139,7 +141,7 @@ const SingleProduct = () => {
    getBag();
  })  */
 
- useEffect(()=>{
+ /* useEffect(()=>{
   const UpdateBasketCount = async ()=>{
     try {
           const res = await axios.put(`http://localhost:5000/api/basket/count/${user_id}`,{basketCount})
@@ -153,8 +155,23 @@ const SingleProduct = () => {
     }
   }
     UpdateBasketCount();
- },[basketCount])
+ },[basketCount]) */
 
+ useEffect(()=>{
+  const getProducts = async ()=>{
+    
+    try {
+      const res = await axios.get(`http://localhost:5000/api/basket/find/${user_id}`)
+      console.log(res)
+      setBag(res.data.cartProducts)
+      const basketQuantity = bag.length
+      dispatch(addProduct({basketQuantity}))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  getProducts();
+ })
  
 
     const handleQuantity =(type)=>{
@@ -184,7 +201,7 @@ const SingleProduct = () => {
   return (
   <Container>
     <Nav>
-     <LoginNavbar basketQuantity={basketQuantity}/>
+     <LoginNavbar/>
      </Nav>
      <Wrapper>
          <InnerContainer>

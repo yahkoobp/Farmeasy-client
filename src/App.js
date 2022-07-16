@@ -34,6 +34,9 @@ import ProductList from "./Admin/pages/productList/ProductList";
 import Product from "./Admin/pages/product/Product"
 import NewProduct from "./Admin/pages/newProduct/newProduct";
 import RatingComponent from "./components/RatingComponent";
+import Order from "./pages/Order";
+import OrdersSuccess from "./pages/OrdersSuccess";
+import Loading from "./components/Loading";
 
 function App() {
   const user = useSelector((state)=>state.user.currentUser)
@@ -82,7 +85,13 @@ function App() {
           <Route path="/seller" element={<ProductList/>}/>
           <Route path="/product/:id" element={<Product/>}/>
           <Route path="/newProduct" element={<NewProduct/>}/>
+          <Route path="/newProduct" element={<NewProduct/>}/>
+          <Route path="/seller-orders" element={<NewProduct/>}/>
           <Route path="/rating" element={<RatingComponent/>}/>
+          <Route path ="/confirm-order" element = {<Order/>}/>
+          <Route path ="/orders" element = {<Orders/>}/>
+          <Route path ="/order-success" element = {<OrdersSuccess/>}/>
+          <Route path="/loading" element={<Loading/>}/>
 
           </Routes>
         </div>

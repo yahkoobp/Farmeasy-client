@@ -10,6 +10,8 @@ import {useState} from "react"
 import { deleteProduct } from '../redux/basketRedux';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { addProduct } from '../redux/basketRedux';
 const Container = styled.div`
      
 `
@@ -51,7 +53,7 @@ const Bottom = styled.div`
     ${mobile({flexDirection:"column"})}
 `
 const Info = styled.div`
-    flex:3;
+   flex:3;
   
     
 `
@@ -173,18 +175,12 @@ const Button = styled.button`
   cursor:pointer;
 `;
 const Bag = () => {
-  const basket = useSelector((state)=>state.basket)
-  // const total = basket.total
-  const productsArray = basket.products
   const user = useSelector((state)=>state.user)
   const user_id = user.currentUser.data._id 
-  const price = basket.products.price
   const [quantity,setQuantity] = useState(1)
-  const [total,setTotal] = useState(0)
   const [bag,setBag] = useState([])
   const dispatch = useDispatch();
 
-  console.log(productsArray)
   const handleQuantity =(type)=>{
     if(type==="dec"){
      quantity > 1 && setQuantity(quantity-1)
@@ -196,15 +192,27 @@ const Bag = () => {
  
  useEffect(()=>{
   const getProducts = async ()=>{
+    
     try {
       const res = await axios.get(`http://localhost:5000/api/basket/find/${user_id}`)
       console.log(res)
       setBag(res.data.cartProducts)
+      const basketQuantity = bag.length
+      dispatch(addProduct({basketQuantity}))
     } catch (error) {
       console.log(error)
     }
   }
   getProducts();
+ })
+ 
+
+ let total=0
+ bag.map((product)=>{
+  total = total+ product.price * product.quantity
+  // setTotal(total+(product.price*product.quantity))
+  // console.log(total)
+
  })
  const handleRemove = ({product})=>{
    
@@ -217,13 +225,13 @@ const Bag = () => {
  }
   return(
   <Container>
-      <LoginNavbar/>
+      <LoginNavbar basketCount ={bag.length}/>
       <Wrapper>
           <Title>YOUR BASKET</Title>
          
           <Bottom>
               <Info>
-                  {bag.map(product=>(
+                  {bag.length ?bag.map(product=>(
                       <Product>
                       <ProductDetail>
                           {/* <Image src={product.image} /> */}
@@ -243,7 +251,10 @@ const Bag = () => {
                           <ProductPrice>{product.price * product.quantity}.00 Rs</ProductPrice>
                       </PriceDetail>
                       <DeleteButton onClick ={()=>handleRemove({product})}>Remove</DeleteButton>
-                  </Product>))}
+                  </Product>)):
+                  <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px"}}>
+                  <span style={{color:"gray",fontWeight:500,textAlign:"center",}}>Your basket is empty</span>
+                  </div>}
               </Info>
               <Summary>
              <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -259,7 +270,9 @@ const Bag = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice> {total}</SummaryItemPrice>
             </SummaryItem>
+            <Link to='/confirm-order'>
             <Button>PLACE ORDER</Button>
+            </Link>
             </Summary>
           </Bottom>
       </Wrapper>

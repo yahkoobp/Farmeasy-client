@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import LoginNavbar from '../components/LoginNavbar';
 import { mobile } from '../Responsive';
-import { subcategories,categories,allproducts } from '../data';
 import {useState,useEffect} from "react"
 import { useSelector } from 'react-redux';
 import axios from "axios"

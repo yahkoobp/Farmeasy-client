@@ -15,7 +15,7 @@ const basketSlice = createSlice({
         addProduct :(state,action)=>{
             // console.log(action.payload.user.currentUser.data._id)
             // console.log(state.userId)
-            state.quantity = action.payload.basketQuantity + 1
+            state.quantity = action.payload.basketQuantity
             // state.products.push(action.payload)
             // console.log(action.payload)
             // state.total += action.payload.price *action.payload.quantity
