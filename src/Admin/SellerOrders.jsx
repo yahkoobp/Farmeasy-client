@@ -7,15 +7,17 @@ import { mobile } from '../Responsive';
 import {useState,useEffect} from "react"
 import { useSelector } from 'react-redux';
 import axios from "axios"
+import Topbar from './components/topbar/Topbar';
 const Container = styled.div`
      
 `
 const Wrapper = styled.div`
-    padding: 80px;
+    padding: 10px;
     ${mobile({padding:"10px"})}
 `
 const Title = styled.h1`
-    font-weight: 500;
+    margin:10px;
+    font-weight: 600;
     font-size: 25px;
     
 `
@@ -32,14 +34,18 @@ const Info = styled.div`
 `
 const Product = styled.div`
   display: flex;
+  margin-top: 13px;
   justify-content: space-between;
   border-bottom:1px solid lightgray;
+  -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
   ${mobile({flexDirection:"column"})}
 `;
 
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  align-items: center;
   margin:5px 0px;
 `;
 
@@ -54,18 +60,20 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
+const ProductName = styled.span`
 `;
 
-const ProductSize = styled.span``;
+const ProductId = styled.span`
+  margin-top:10px;`;
+
+const CustomerInfo = styled.span`
+  margin-top:10px;
+`
+
+
+const ProductSize = styled.span`
+ margin-top: 10px;
+`;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -74,7 +82,23 @@ const PriceDetail = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+const DeliveryInfo = styled.button`
+  border:none;
+  color:white;
+  padding:10px;
+  background-color:green;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 200px;
+  margin-right: 50px;
+  border-radius: 5px;
+  &:hover{
+    background-color:#2ba613 ;
+  }
+  
+  
+`
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
@@ -98,7 +122,7 @@ const Hr= styled.hr`
     height:1px;
 `
 
-const Orders = () => {
+const SellerOrders = () => {
 
   const [orders,setOrders] = useState([])
   const user = useSelector((state)=>state.user)
@@ -109,7 +133,7 @@ const Orders = () => {
 
     const getOrders = async ()=>{
       try {
-        const res = await axios.get(`http://localhost:5000/api/orders/find/${user_id}`)
+        const res = await axios.get(`http://localhost:5000/api/seller/orders/find/${user_id}`)
         // console.log(res)
         setOrders(res.data.orders)
         
@@ -120,25 +144,39 @@ const Orders = () => {
     getOrders();
    },[user_id])
 
-   console.log(orders)
+
+
+  const handleClick =  (p_id)=>{
+     axios.put(`http://localhost:5000/api/seller/delivery/${p_id}`)
+  }
   
   return(
   <Container>
-      <LoginNavbar/>
+      <Topbar/>
       <Wrapper>
           <Title>YOUR ORDERS</Title>
           <Bottom>
               <Info>
-                  {orders.map(nested=> nested.map(order =>
+                  {orders.map(order =>
                       <Product>
                       <ProductDetail>
                           <Details>
-                              <ProductName><b>Product:</b> {order.subcat}</ProductName>
-                              <ProductId><b>ID:</b> {order._id}</ProductId>
-                              <ProductSize><b>Quantity:</b>{order.price}</ProductSize>
+                              <ProductName><b>Product:    </b> {order.product.subcat}</ProductName>
+                              <ProductId><b>ID:   </b> {order.product._id}</ProductId>
+                              <ProductSize><b>Price:   </b>{order.product.price}</ProductSize>
+                              <CustomerInfo><b>Customer name: </b>{order.firstname}  </CustomerInfo>
+                              <CustomerInfo><b>Customer mob:</b>{order.phone}  </CustomerInfo>
+                              <CustomerInfo Address><b>Customer Address:</b>{order.address} </CustomerInfo>
+
+                              
                           </Details>
+                          <DeliveryInfo 
+                          onClick={()=>{ 
+                            const confirm = window.confirm("The product will be marked as delivered")
+                            if(confirm===true)
+                            handleClick(order.product._id)}}>Mark as Delivered</DeliveryInfo>
                       </ProductDetail>
-                  </Product>))}
+                  </Product>)}
               </Info>
             
           </Bottom>
@@ -148,4 +186,4 @@ const Orders = () => {
   )
 };
 
-export default Orders;
+export default SellerOrders;

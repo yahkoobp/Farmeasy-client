@@ -90,11 +90,11 @@ export default function NewProduct() {
           </select>
         </div>
         <div className="addProductItem">
-          <select   name="category" id="category">
+          <select   name="Locality" id="locality">
             <option value="">Select Locality</option>
-            <option value="vegitables">Kalpetta</option>
-            <option value="fruits">mananthavady</option>
-            <option value="plants&seeds">sulthan bathery</option>
+            <option value="Kalpetta">Kalpetta</option>
+            <option value="Mananthavady">Mananthavady</option>
+            <option value="Sulthan bathery">Sulthan bathery</option>
           </select>
           </div>
         <button className="addProductButton">Create</button>

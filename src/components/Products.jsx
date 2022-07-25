@@ -21,9 +21,11 @@ const ProductContainer = styled.div`
 `
 const Text = styled.h2`
    font-size: 50px;
-   letter-spacing:0.5rem;
-   font-weight: 400;
+   letter-spacing:0.2rem;
+   font-family:'Courier New', Courier, monospace;
+   font-weight: 500;
    text-align: center;
+   color:Green;
 `
 const Products = ({cat}) => {
  const [products,setProducts] =useState([])

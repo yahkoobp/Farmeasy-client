@@ -1,13 +1,8 @@
-import "./userList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../../dummyData";
-import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import AdminTop from "../../components/topbar/AdminTop";
+import AdminTop from "./components/topbar/AdminTop";
 import axios from "axios"
 import styled from "styled-components";
-import { Button } from "@material-ui/core";
+
 
 const TableWrapper = styled.div`
   display:flex;
@@ -59,22 +54,22 @@ const ActionButton = styled.button`
   cursor:pointer;
 `
 
-export default function UserList() {
-  const [users, setUsers] = useState([]);
+export default function SellerList() {
+  const [sellers, setSellers] = useState([]);
 
   useEffect(()=>{
-    const getUsers = async ()=>{
+    const getSellers = async ()=>{
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/admin/get-users"
+          "http://localhost:5000/api/admin/get-sellers"
         )
-        setUsers(res.data)
+        setSellers(res.data)
       } 
       catch (error) {
         console.log(error)
       }
     }
-    getUsers();
+    getSellers();
  },[])
 
   const handleDelete = (id) => {
@@ -85,7 +80,7 @@ export default function UserList() {
     <div className="userList">
 
       <AdminTop/>
-      <h1 style={{fontSize:"25px",margin:"10px"}}>Users</h1>
+      <h1 style={{fontSize:"25px",margin:"10px"}}>Sellers</h1>
       <TableWrapper>
       <Table>
         <Tr>
@@ -96,12 +91,12 @@ export default function UserList() {
         <Th>Action</Th>
         </Tr>
 
-        {users.map((user)=>(
+        {sellers.map((seller)=>(
         <Tr>
-            <Td>{user._id}</Td>
-            <Td>{user.firstname}</Td>
-            <Td>{user.email}</Td>
-            <Td>{user.city}</Td>
+            <Td>{seller._id}</Td>
+            <Td>{seller.firstname}</Td>
+            <Td>{seller.email}</Td>
+            <Td>{seller.city}</Td>
             <Td><ActionButton>Remove</ActionButton></Td>
         </Tr>
         ))}

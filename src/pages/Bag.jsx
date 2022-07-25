@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { addProduct } from '../redux/basketRedux';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 const Container = styled.div`
      
 `
@@ -21,8 +23,8 @@ const Wrapper = styled.div`
 `
 const Title = styled.h1`
     font-weight: 400;
-    
     border-bottom:1px solid gray;
+   
 `
 const Top = styled.div`
     display: flex;
@@ -61,8 +63,10 @@ const Product = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
   border-bottom:1px solid lightgray;
+  margin-top:15px;
+  -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
   ${mobile({flexDirection:"column"})}
 `;
 
@@ -125,14 +129,17 @@ const ProductPrice = styled.div`
 
 const DeleteButton = styled.button`
   height:40px;
-  background-color: #f04f4f;
+  background-color:white;
   font-size: 15px;
-  color: white;
-  font-weight: 500;
-  border:1px solid gray;
+  color:darkblue;
+  font-weight: 700;
+  border:none;
   border-radius: 4px;
   margin : 0px 25px;
   cursor: pointer;
+  &:hover{
+    color:red;
+  }
 `
 const Hr= styled.hr`
     background-color:#eee ;
@@ -141,30 +148,34 @@ const Hr= styled.hr`
 `
 const Summary = styled.div`
   flex:1;
-  border: 0.5px solid lightgray;
-  border-radius: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
   padding: 20px;
-  height: 50vh;
-  margin:50px 20px;
+  height: 25vh;
+  margin:15px 20px;
   position: -webkit-sticky;
   position:sticky;
   top:0;
+  -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
 `
 const SummaryTitle = styled.h1`
-  font-weight: 200;
+  font-weight: 500;
 `;
 
 const SummaryItem = styled.div`
-  margin: 30px 0px;
+  margin: 15px 0px;
   display: flex;
   justify-content: space-between;
   font-weight: ${(props) => props.type === "total" && "500"};
   font-size: ${(props) => props.type === "total" && "24px"};
 `;
 
-const SummaryItemText = styled.span``;
+const SummaryItemText = styled.span`
+`;
 
-const SummaryItemPrice = styled.span``;
+const SummaryItemPrice = styled.span`
+`;
 
 const Button = styled.button`
   width: 100%;
@@ -173,6 +184,7 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
   cursor:pointer;
+ 
 `;
 const Bag = () => {
   const user = useSelector((state)=>state.user)
@@ -180,7 +192,7 @@ const Bag = () => {
   const [quantity,setQuantity] = useState(1)
   const [bag,setBag] = useState([])
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const handleQuantity =(type)=>{
     if(type==="dec"){
      quantity > 1 && setQuantity(quantity-1)
@@ -192,6 +204,7 @@ const Bag = () => {
  
  useEffect(()=>{
   const getProducts = async ()=>{
+   
     
     try {
       const res = await axios.get(`http://localhost:5000/api/basket/find/${user_id}`)
@@ -223,12 +236,15 @@ const Bag = () => {
   dispatch(deleteProduct({product}))
   // console.log(product)
  }
+
+ const handleClick = ()=>{
+  bag.length ? navigate("/confirm-order") : window.alert("Oops...The basket is empty ! ")
+ }
   return(
   <Container>
       <LoginNavbar basketCount ={bag.length}/>
       <Wrapper>
           <Title>YOUR BASKET</Title>
-         
           <Bottom>
               <Info>
                   {bag.length ?bag.map(product=>(
@@ -238,7 +254,7 @@ const Bag = () => {
                           <Details>
                               <ProductName><b>Product:</b> {product.title}</ProductName>
                               <ProductId><b>Price:</b> {product.price}</ProductId>
-                              <ProductSize><b>Quantity:</b>{product.quantity}</ProductSize>
+                              <ProductSize><b>Quantity:</b>{product.quantity}kg</ProductSize>
                           </Details>
                       </ProductDetail>
                       <PriceDetail>
@@ -250,7 +266,11 @@ const Bag = () => {
                           
                           <ProductPrice>{product.price * product.quantity}.00 Rs</ProductPrice>
                       </PriceDetail>
-                      <DeleteButton onClick ={()=>handleRemove({product})}>Remove</DeleteButton>
+                      <DeleteButton onClick ={()=>{
+                        const confirmBox = window.confirm("The item will be deleted from your basket")
+                        if(confirmBox===true)
+                        handleRemove({product})}}>
+                          Remove</DeleteButton>
                   </Product>)):
                   <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px"}}>
                   <span style={{color:"gray",fontWeight:500,textAlign:"center",}}>Your basket is empty</span>
@@ -268,11 +288,11 @@ const Bag = () => {
             
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice> {total}</SummaryItemPrice>
+              <SummaryItemPrice>RS {total}.00</SummaryItemPrice>
             </SummaryItem>
-            <Link to='/confirm-order'>
-            <Button>PLACE ORDER</Button>
-            </Link>
+           
+            <Button onClick ={handleClick}>PLACE ORDER</Button>
+            
             </Summary>
           </Bottom>
       </Wrapper>

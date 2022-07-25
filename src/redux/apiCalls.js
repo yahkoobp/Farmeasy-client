@@ -1,6 +1,7 @@
 import axios from "axios";
 import { loginFailure, loginStart, loginSuccess } from "./userRedux"
-import { addProduct } from "./basketRedux";
+import {adminLoginStart,adminLoginSuccess,adminLoginFailure,adminLogout} from "./adminRedux"
+
 
 export const login = async (dispatch,user)=>{
     dispatch(loginStart());
@@ -12,12 +13,12 @@ export const login = async (dispatch,user)=>{
     }
 }
 
-// export const basketQuantity = async (dispatch,basketCount)=>{
-//     try {
-//         const res=await axios.put("http://localhost:5000/api/basket/count",basketCount)
-//         dispatch(addProduct(res.data))
-//         console.log(res)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const adminLogin = async (dispatch,admin)=>{
+    dispatch(adminLoginStart());
+    try {
+        const res = await axios.post("http://localhost:5000/api/admin/login",admin)
+        dispatch(adminLoginSuccess(res))
+    } catch (error) {
+        dispatch(adminLoginFailure())
+    }
+}

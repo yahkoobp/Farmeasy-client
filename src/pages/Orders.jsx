@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     ${mobile({padding:"10px"})}
 `
 const Title = styled.h1`
-    font-weight: 500;
+    font-weight: 600;
     font-size: 25px;
     
 `
@@ -35,12 +35,16 @@ const Product = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom:1px solid lightgray;
+  margin-top: 10px;
+  -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
   ${mobile({flexDirection:"column"})}
 `;
 
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  align-items: center;
   margin:5px 0px;
 `;
 
@@ -59,6 +63,8 @@ const ProductName = styled.span``;
 
 const ProductId = styled.span``;
 
+const ProductInfo = styled.span``;
+
 const ProductColor = styled.div`
   width: 20px;
   height: 20px;
@@ -75,7 +81,10 @@ const PriceDetail = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+const DeliveryInfo = styled.h3`
+   margin-left: 800px;
+   color:red;
+`
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
@@ -130,16 +139,25 @@ const Orders = () => {
           <Title>YOUR ORDERS</Title>
           <Bottom>
               <Info>
-                  {orders.map(nested=> nested.map(order =>
+                {orders.length?
+                 [...orders].reverse().map(nested=>nested.map(order =>
                       <Product>
                       <ProductDetail>
                           <Details>
-                              <ProductName><b>Product:</b> {order.subcat}</ProductName>
+                              <ProductName><b>Product:</b> {order.title}</ProductName>
                               <ProductId><b>ID:</b> {order._id}</ProductId>
-                              <ProductSize><b>Quantity:</b>{order.price}</ProductSize>
+                              <ProductSize><b>Price:</b>{order.price}</ProductSize>
+                              <ProductInfo><b>Seller:</b>{order.seller.firstname}</ProductInfo>
+                              <ProductInfo><b>Seller city:</b>{order.seller.city}</ProductInfo>
+                              <ProductInfo><b>Seller Mob :</b>{order.seller.phone}</ProductInfo>
                           </Details>
+                          <DeliveryInfo>Not Yet Delivered</DeliveryInfo>
                       </ProductDetail>
-                  </Product>))}
+                    </Product>)):
+                    <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px"}}>
+                  <span style={{color:"gray",fontWeight:500,textAlign:"center",}}>You have no orders yet</span>
+                  </div>}
+                 
               </Info>
             
           </Bottom>

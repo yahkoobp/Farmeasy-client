@@ -1,16 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import { mobile } from '../Responsive';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
       width:100%;
       height: 100vh;
       margin-top:0px;
-      background: linear-gradient(rgba(255,255,255,0.5),
-    rgba(255,255,255,0.5)),
-     url("https://images.pexels.com/photos/6508827/pexels-photo-6508827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&") center center;
+      background: linear-gradient(#0000007a,
+    #0000007b),
+     url("https://images.pexels.com/photos/2280567/pexels-photo-2280567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center center;
      background-size: cover;
      ${mobile({width:"100%"})}
+`
+const Header = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content: center;
 `
 const Wrapper = styled.div`
     display:flex;
@@ -28,10 +34,11 @@ const IntroContainer = styled.div`
    
 `
 const Intro = styled.p`
-    margin:100px 40px;
+    margin:30px 40px;
     font-size: 50px;
-    font-weight:500;
-    color:darkgreen;
+    font-weight:700;
+    color:white;
+    transition: 2s ease-in-out;
     ${mobile({fontSize:"20px"})}
   
 `
@@ -80,9 +87,20 @@ const O1=styled.h2`
 const Introduction = ()=> {
   return (
     <Container>
+       <Header>
+       <h1 style={{color:"lightgreen",fontSize:"45px",fontWeight:600,margin:"10px"}}>FarmEasy</h1>
+       
+       </Header>
        <Wrapper>
           <IntroContainer>
-          <Intro>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero et anim</Intro>
+           
+          <Intro>Every time you buy organic, you are persuading more farmers to grow organic</Intro>
+          <Link to="/register">
+          <button style={{padding:"15px",width:"200px",backgroundColor:"orange",border:"none",fontWeight:700,fontSize:"15px",color:"white",marginLeft:"40px",cursor:"pointer"}}>SIGN UP</button>
+          </Link>
+          <Link to="/login">
+          <button style={{padding:"15px",width:"200px",backgroundColor:"orange",border:"none",fontWeight:700,fontSize:"15px",color:"white",marginLeft:"40px",cursor:"pointer"}}>LOGIN</button>
+          </Link>
           </IntroContainer>
           <SideImgContainer>
           <SideImg src=""></SideImg>

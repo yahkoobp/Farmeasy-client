@@ -7,7 +7,7 @@ import Queries from '../components/Queries'
 const Home = () => {
   return (
     <div>
-        <Navbar/>
+        {/* <Navbar/> */}
         <Introduction/>
         <Footer/>
     </div>

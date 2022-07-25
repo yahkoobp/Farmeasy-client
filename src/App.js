@@ -37,31 +37,17 @@ import RatingComponent from "./components/RatingComponent";
 import Order from "./pages/Order";
 import OrdersSuccess from "./pages/OrdersSuccess";
 import Loading from "./components/Loading";
+import SellerOrders from "./Admin/SellerOrders";
+import AdminLogin from "./pages/AdminLogin";
+import SellerList from "./Admin/SellerList";
+import SellerRequests from "./Admin/SellerRequests";
+
 
 function App() {
   const user = useSelector((state)=>state.user.currentUser)
-  const admin =false
-  // const user_id = user._id
-  // const basket =useSelector((state)=>state.basket)
-  // const basketCount = basket.quantity
-  // const [basketQuantity,setBasketQuantity] = useState(0)
-  
-
-  // useEffect(()=>{
-  //   const UpdateBasketCount = async ()=>{
-  //     try {
-  //           const res = await axios.put(`http://localhost:5000/api/basket/count/${user_id}`,{basketCount})
-           
-  //           console.log(res.data)
-  //           setBasketQuantity(res.data)
-            
-  
-  //      } catch (error) { 
-  //       console.log(error)
-  //     }
-  //   }
-  //     UpdateBasketCount();
-  //  },[basketCount])
+  const admin =useSelector((state)=>state.admin.currentAdmin)
+  console.log(admin)
+ 
 
   return (
     <div className="App">
@@ -78,20 +64,22 @@ function App() {
         <Route path="/single-product/:id" element={user ?<SingleProduct/>:<Navigate to="/"/>}/>
         <Route path="/orders" element={user ?<Orders/>:<Navigate to="/"/>}/>
         
-          {/* <Route path="/seller" element={<SellerHome/>}/>
-          <Route path="/users" element={<UserList/>}/>
-          <Route path="/user/:id" element={<User/>}/>
-          <Route path="/newUser" element={<NewUser/>}/> */}
           <Route path="/seller" element={<ProductList/>}/>
           <Route path="/product/:id" element={<Product/>}/>
           <Route path="/newProduct" element={<NewProduct/>}/>
           <Route path="/newProduct" element={<NewProduct/>}/>
-          <Route path="/seller-orders" element={<NewProduct/>}/>
+          <Route path="/seller-orders" element={<SellerOrders/>}/>
           <Route path="/rating" element={<RatingComponent/>}/>
           <Route path ="/confirm-order" element = {<Order/>}/>
           <Route path ="/orders" element = {<Orders/>}/>
           <Route path ="/order-success" element = {<OrdersSuccess/>}/>
           <Route path="/loading" element={<Loading/>}/>
+          <Route path="/admin-login" element={admin?<Navigate to ="/users"/>:<AdminLogin/>}/>
+          <Route path="/users" element={admin?<UserList/>:<Navigate to ="/admin-login"/>}/>
+          <Route path="/sellers" element={admin?<SellerList/>:<Navigate to ="/admin-login"/>}/>
+          <Route path="/seller-requests" element={admin?<SellerRequests/>:<Navigate to ="/admin-login"/>}/>
+          
+
 
           </Routes>
         </div>

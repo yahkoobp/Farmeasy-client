@@ -78,9 +78,10 @@ flex:1;
 text-align: center;
 `
 const Logo = styled.h1`
-  font-weight:400;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color:white;
+  font-weight:545;
+  font-family:'Courier New', Courier, monospace;
+  color:lightgreen;
+  transition:2s;
   ${mobile({fontSize:"24px"})}
 `
 const Right =styled.div`
@@ -213,8 +214,8 @@ const LoginNavbar = () => {
               </OptionsContainer>
               <ArrowDropDownOutlined style={{color:"white"}}/>
               </Options>
-              <Link to="/seller-request" style={{textDecoration:"none"}}>
-              <MenuItem>BECOME A SELLER</MenuItem>
+              <Link to="/seller" style={{textDecoration:"none"}}>
+              <MenuItem>SELL</MenuItem>
               </Link>
               <MenuItem>
               <Link to="/bag" style={{textDecoration:"none"}}>
@@ -223,10 +224,13 @@ const LoginNavbar = () => {
               </Badge>
               </Link>
               </MenuItem>
-              <Link to ="/orders">
+              <Link to ="/orders" style={{textDecoration:"none"}}>
               <MenuItem>ORDERS</MenuItem>
               </Link>
-              <MenuItem onClick={clickHandler}>LOGOUT</MenuItem>
+              <MenuItem onClick ={(e)=>{
+                        const confirmBox = window.confirm("Are you sure ?")
+                        if(confirmBox===true)
+                        clickHandler(e)}}>LOGOUT</MenuItem>
              </Right>
          </Wrapper>
          

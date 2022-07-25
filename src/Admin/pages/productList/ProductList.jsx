@@ -13,6 +13,7 @@ export default function ProductList() {
 const [products,setProducts] = useState([])
 const seller = useSelector((state)=>state.user.currentUser)
  const seller_id = seller.data._id
+ console.log(seller.data)
 
   useEffect(()=>{
     const getProducts = async ()=>{
@@ -22,6 +23,7 @@ const seller = useSelector((state)=>state.user.currentUser)
         )
         // console.log(res.data)
         setProducts(res.data)
+        console.log(products)
        
       } 
       catch (error) {
@@ -29,7 +31,7 @@ const seller = useSelector((state)=>state.user.currentUser)
       }
     }
     getProducts();
- })
+ },[seller_id])
   // const [data, setData] = useState(productRows);
 
   const handleDelete = (_id) => {
@@ -41,7 +43,7 @@ const seller = useSelector((state)=>state.user.currentUser)
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    { field: "_id", headerName: "ID", width: 300 },
     {
       field: "product",
       headerName: "Product",
@@ -64,12 +66,12 @@ const seller = useSelector((state)=>state.user.currentUser)
     {
       field: "price",
       headerName: "Price",
-      width: 160,
+      width: 300,
     },
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 300,
       renderCell: (params) => {
         return (
           <>
@@ -89,6 +91,9 @@ const seller = useSelector((state)=>state.user.currentUser)
 
 
   return (
+    <div>
+      
+      {seller.data.isSeller ?
     <div className="productList">
       <Topbar/>
     
@@ -100,6 +105,16 @@ const seller = useSelector((state)=>state.user.currentUser)
         pageSize={50}
         checkboxSelection
       />
+    </div> :
+    
+      <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
+        
+      <h1 style={{color:"red"}}>You are not allowed to sell at this moment...</h1>
+      <Link to ="/seller-request">
+      <button style={{border:"none",backgroundColor:"green",color:"white",borderRadius:"4px",padding:"10px",margin:"30px",cursor:"pointer"}}>Become a seller</button>
+      </Link>
+      </div>
+}
     </div>
   );
 }

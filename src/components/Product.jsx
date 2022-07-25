@@ -31,7 +31,8 @@ const Container = styled.div`
     background-color: #f5fbfd;
     position:relative;
     border-radius: 0px;
-
+    -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.07); 
+box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.07);
     &:hover ${Info}{
         opacity:1;
     }

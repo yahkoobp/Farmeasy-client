@@ -87,7 +87,7 @@ const handleSubmit = (e)=>{
     const finalData=Object.fromEntries(data.entries())
     console.log(finalData)
 
-    axios.post('http://localhost:5000/api/seller/seller-register',{...finalData,u_id})
+    axios.post('http://localhost:5000/api/seller-request/register',{...finalData,u_id})
     .then((res) => {
         console.log(res.data)
     }).catch((error) => {

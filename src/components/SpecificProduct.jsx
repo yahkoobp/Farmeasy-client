@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {allproducts} from "../data"
 import LoginNavbar from './LoginNavbar';
+import RatingComponent from './RatingComponent';
 
 const Container = styled.div`
     flex:1;
@@ -38,6 +39,7 @@ const Place = styled.h4`
 const Button = styled.button`
   width:100px;
   height: 35px;
+  margin:10px;
   color:white;
   font-size: 15px;
   background-color:teal;
@@ -55,11 +57,13 @@ const SpecificProduct = ({item}) => {
   <Container>
        <Title>{item.title}</Title>
        <Price>Rs : {item.price}</Price>
-       {/* <Seller>Seller : {item.seller.firstname}</Seller> */}
-       {/* <Place>Place :{item.seller.city}</Place> */}
+       <Seller>Seller : {item.seller.firstname}</Seller> 
+        <Place>Place :{item.seller.city}</Place> 
+        <RatingComponent/>
        <Link to={`/single-product/${item._id}`}>
        <Button>View</Button>
        </Link>
+       
   </Container>
 
   )

@@ -1,6 +1,7 @@
 import { configureStore ,combineReducers } from "@reduxjs/toolkit";
 import basketReducer from "./basketRedux"
 import userReducer from "./userRedux"
+import adminReducer from "./adminRedux"
 
 import {
     persistStore,
@@ -23,7 +24,8 @@ import {
   
   const rootReducer = combineReducers({
     user:userReducer,
-    basket:basketReducer
+    basket:basketReducer,
+    admin:adminReducer
   })
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 

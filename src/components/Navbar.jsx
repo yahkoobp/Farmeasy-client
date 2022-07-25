@@ -11,7 +11,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     height :65px;
-    background-color:teal;
+    background-color:#444444;
     width:100%;
     position: fixed;
     box-shadow: 65px 64px 87px rgba(255, 255, 255, 0.45);
@@ -62,9 +62,9 @@ flex:1;
 text-align: center;
 `
 const Logo = styled.h1`
-  font-weight:400;
+  font-weight:600;
   letter-spacing: 0.1em;
-  color:white;
+  color:green;
   ${mobile({fontSize:"24px"})}
 `
 const Right =styled.div`
@@ -78,9 +78,9 @@ ${mobile({flex:1,justifyContent:"flexStart",padding:"0px 0px"})}
 `
 const MenuItem = styled.h5`
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
-  color: #ffffff;
+  color:black;
   margin:0px 20px;
   /* border: 1px solid white; */
   ${mobile({fontSize:"12px" , marginLeft:"10px",width:"55px"})}

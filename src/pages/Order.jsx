@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react'
 import { useSelector } from "react-redux"
 import axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom'
+import LoginNavbar from '../components/LoginNavbar'
 
 
 
@@ -27,8 +28,8 @@ const Form = styled.form`
     border: 1px solid teal;
     padding:30px;
     border-radius: 4px;
-    -webkit-box-shadow: 2px 3px 11px 6px rgba(0,0,0,0.12); 
-    box-shadow: 2px 3px 11px 6px rgba(0,0,0,0.10);
+    -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
 `
 const Head = styled.h2`
     color :green;
@@ -101,16 +102,21 @@ const Order = () => {
        bag.map((product)=>{
         total = total+ product.price * product.quantity
        })
+ const status ={status:"pending"}
 
-       const handleSubmit = () =>{
-        axios.post (`http://localhost:5000/api/orders/${user_id}`,{bag})
+       const handleSubmit = (e) =>{
+        e.preventDefault()
+    const data=new FormData(e.target)
+    const finalData=Object.fromEntries(data.entries())
+    console.log(finalData)
+        axios.post (`http://localhost:5000/api/orders/${user_id}`,{...status,bag})
     .then((res) => {
 
     }).catch((error) => {
         console.log(error.response.data)
     });
      bag.map((product)=>(
-        axios.post (`http://localhost:5000/api/seller/orders/${product.seller._id}`,{product})
+        axios.post (`http://localhost:5000/api/seller/orders/${product.seller._id}`,{...finalData,product})
         .then((res) => {
     
         }).catch((error) => {
@@ -126,13 +132,14 @@ const Order = () => {
        }
   return (
     <Container>
+        <LoginNavbar/>
         <Wrapper>
             <Form onSubmit={handleSubmit}>
             <Head>Order Confirmation</Head>
-            <Input type ="text" name ="name" placeholder="Name" required/>
-            <Input type = "number" name="mobNo" min="1" placeholder = "Mobile Number" required/>
+            <Input type ="text" name ="firstname" placeholder="Name" required/>
+            <Input type = "number" name="phone" min="1" placeholder = "Mobile Number" required/>
             <TextArea name="address" placeholder='Address' required/>
-            <Price>Amount to be paid : {total}</Price>
+            <Price>Amount to be paid :Rs {total}.00</Price>
             <Button type="submit">Confirm</Button>
             </Form>
         </Wrapper>

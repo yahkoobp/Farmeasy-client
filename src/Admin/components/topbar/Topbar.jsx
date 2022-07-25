@@ -24,7 +24,9 @@ const Topbar = () => {
              </Link>
           </div>
           <div className="topbarIconContainer">
+            <Link to="/seller-orders">
           <button style={{border:"none",borderRadius:"5px",padding:"5px",cursor:"pointer"}}>Orders</button>
+          </Link>
           </div>
           
         </div>
