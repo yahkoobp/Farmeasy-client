@@ -8,6 +8,7 @@ import { subcategories,categories,allproducts } from '../data';
 import {useState,useEffect} from "react"
 import { useSelector } from 'react-redux';
 import axios from "axios"
+import { Link } from 'react-router-dom';
 const Container = styled.div`
      
 `
@@ -83,7 +84,18 @@ const PriceDetail = styled.div`
 `;
 const DeliveryInfo = styled.h3`
    margin-left: 800px;
-   color:red;
+   color: ${(props) => props.color};
+
+`
+const Review = styled.button`
+  margin-left:20px;
+  cursor:pointer;
+  border:none;
+  padding:5px 15px;
+  color:black;
+  background-color:orange;
+  font-weight: 600;
+  border-radius: 5px;
 `
 const ProductAmountContainer = styled.div`
   display: flex;
@@ -140,7 +152,7 @@ const Orders = () => {
           <Bottom>
               <Info>
                 {orders.length?
-                 [...orders].reverse().map(nested=>nested.map(order =>
+                 [...orders].reverse().map((order) =>
                       <Product>
                       <ProductDetail>
                           <Details>
@@ -151,9 +163,19 @@ const Orders = () => {
                               <ProductInfo><b>Seller city:</b>{order.seller.city}</ProductInfo>
                               <ProductInfo><b>Seller Mob :</b>{order.seller.phone}</ProductInfo>
                           </Details>
-                          <DeliveryInfo>Not Yet Delivered</DeliveryInfo>
+                          {
+                            order.isDelivered ?
+                            <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                          <DeliveryInfo color="green">Delivered</DeliveryInfo>
+                          <Link to={`/review/${order.seller._id}`}>
+                          <Review>Review</Review>
+                          </Link>
+                          </div>
+                           :
+                          <DeliveryInfo color="red">Not Delivered</DeliveryInfo>
+                          }
                       </ProductDetail>
-                    </Product>)):
+                    </Product>):
                     <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px"}}>
                   <span style={{color:"gray",fontWeight:500,textAlign:"center",}}>You have no orders yet</span>
                   </div>}

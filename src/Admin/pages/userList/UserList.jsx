@@ -78,7 +78,7 @@ export default function UserList() {
  },[])
 
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
+     axios.delete(`http://localhost:5000/api/admin/delete/${id}`)
   };
 
   return (
@@ -102,7 +102,7 @@ export default function UserList() {
             <Td>{user.firstname}</Td>
             <Td>{user.email}</Td>
             <Td>{user.city}</Td>
-            <Td><ActionButton>Remove</ActionButton></Td>
+            <Td><ActionButton onClick = {handleDelete(user._id)}>Remove</ActionButton></Td>
         </Tr>
         ))}
       </Table>

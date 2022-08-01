@@ -50,7 +50,7 @@ const Products = ({cat}) => {
     <Text>Explore Products</Text>
       <ProductContainer>
        {
-       products.slice(0,8).map(item =>(
+      [...products].reverse().slice(0,8).map(item =>(
             <Product item={item} key={item.id}/>
         ))}
       </ProductContainer>

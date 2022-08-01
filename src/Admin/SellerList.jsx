@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import AdminTop from "./components/topbar/AdminTop";
 import axios from "axios"
 import styled from "styled-components";
+import RatingComponent from "../components/RatingComponent";
 
 
 const TableWrapper = styled.div`
@@ -88,6 +89,7 @@ export default function SellerList() {
         <Th>Name</Th>
         <Th>Email</Th>
         <Th>City</Th>
+        <Th>Rating</Th>
         <Th>Action</Th>
         </Tr>
 
@@ -97,6 +99,7 @@ export default function SellerList() {
             <Td>{seller.firstname}</Td>
             <Td>{seller.email}</Td>
             <Td>{seller.city}</Td>
+            <Td><div style={{display:"flex",alignItems:"center",justifyContent:"center"}}><RatingComponent value={seller.totalRating}/></div></Td>
             <Td><ActionButton>Remove</ActionButton></Td>
         </Tr>
         ))}

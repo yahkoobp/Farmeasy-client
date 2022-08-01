@@ -3,7 +3,7 @@ import AdminTop from "./components/topbar/AdminTop";
 import axios from "axios"
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { Done, DoneOutline } from "@material-ui/icons";
+import { CheckCircle, Done, DoneOutline } from "@material-ui/icons";
 
 
 const TableWrapper = styled.div`
@@ -107,7 +107,7 @@ export default function SellerRequests() {
             <Td>{request.email}</Td>
             <Td>{request.city}</Td>
             <Td>{request.address}</Td>
-            { request.isSeller?<Td><h3 style={{color:"teal"}}>Approved <Done style={{color:"green",}}/> </h3></Td>:
+            { request.isSeller?<Td><div style={{display:"flex",alignItems:"center"}}><CheckCircle style={{color:"green"}}/><h3 style={{color:"teal",marginLeft:"5px"}}>Approved </h3></div></Td>:
             <Td><ActionButton onClick = {() =>{
               const confirmBox = window.confirm("If Approved the user will be able to sell thier products")
               if(confirmBox === true)

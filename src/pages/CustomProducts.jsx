@@ -66,7 +66,7 @@ const CustomProducts = () => {
             </Option>
             <Option value="Mananthavady">Mananthavady</Option>
             <Option value="Kalpetta">Kalpetta</Option>
-            <Option value="Sulthan Bathery">Sulthan Bathery</Option>
+            <Option value="Sulthan bathery">Sulthan Bathery</Option>
              </Select>
              {/* <Select name="size">
             <Option disabled>

@@ -58,7 +58,7 @@ export default function Product() {
           </div>
           <div className="productTopRight">
               <div className="productInfoTop">
-                  <img src="" alt="" className="productInfoImg" />
+                  <img src={product.image ? product.image :"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="" className="productInfoImg" />
                   <span className="productName">{product.title}</span>
               </div>
               <div className="productInfoBottom">

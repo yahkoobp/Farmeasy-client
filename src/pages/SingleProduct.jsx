@@ -10,6 +10,8 @@ import { useSelector,useDispatch } from 'react-redux';
 import Products from '../components/Products';
 import { addProduct } from '../redux/basketRedux';
 import { addToCart } from '../redux/apiCalls';
+import RatingComponent from '../components/RatingComponent';
+
 
 const Container = styled.div`
     
@@ -25,21 +27,43 @@ const Wrapper = styled.div`
 const InnerContainer = styled.div`
     flex:1;
     display:flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 300px;
     width:200px;
-    border :1px solid gray
+    -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.21); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.21);
 
 `
 const InfoContainer = styled.div`
     flex:1;
     padding:0px 50px;
-    margin:40px 0px;
+    margin:70px 50px;
     ${mobile({padding:"10px"})}
 `
+const ProductInfo = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 20px;
+`
+const ImageContainer = styled.div`
+   height: 200px;
+   width:200px;
+`
+const Image = styled.img`
+   width:100%;
+   height:100%;
+   object-fit: cover;
+`
 const Title = styled.h1`
+    font-weight: 400;
+    margin:10px 0px;
+    text-align: center;
+
+`
+const Title1 = styled.h1`
     font-weight: 400;
     margin:10px 0px;
 
@@ -90,7 +114,7 @@ const Button = styled.button`
 
     &:hover{
         background-color: #f8f4f4;
-        border-radius: 20px;
+       
     }
 `
 
@@ -99,11 +123,13 @@ const SingleProduct = () => {
     const location = useLocation()
     const id = location.pathname.split("/")[2]
     const [product,setProduct] = useState([])
+    const [seller,setSeller] = useState({})
     const [quantity,setQuantity] = useState(1)
     /* const [basketQuantity,setBasketQuantity] =useState(0)  */
     const user = useSelector((state)=>state.user)
     const user_id = user.currentUser.data._id 
     const currentuser = user.currentUser
+    const [review,setReview] = useState(0)
    
     /* const productsArray = basket.products */
     /* const basketQuantity = basket.quantity */
@@ -122,12 +148,23 @@ const SingleProduct = () => {
                 "http://localhost:5000/api/product/find/"+id)
               /* console.log(res) */
               setProduct(res.data)
+              setSeller(res.data.seller)
             } catch (error) {
               console.log(error)
             }
           }
           getProducts();
     },[id])
+
+    const s_id = seller._id
+    useEffect(()=>{
+    axios.get(`http://localhost:5000/api/seller/get-seller/${s_id}`).then(res=>{
+      // console.log(res.data.ratings)
+      setReview(res.data.totalRating)
+    })
+  
+  })
+
 
     /* useEffect(()=>{
   const getBag = async ()=>{
@@ -205,12 +242,19 @@ const SingleProduct = () => {
      </Nav>
      <Wrapper>
          <InnerContainer>
+          <ImageContainer>
+            <Image src={product.image ? product.image : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} ></Image>
+          </ImageContainer>
+              <ProductInfo>
              <Title>{product.title}</Title>
-             <Seller>seller :</Seller>
-             <City>city :</City>
+             <Seller>seller : {seller.firstname}</Seller>
+             <City>city : {seller.city}</City>
+             <City>Mob : {seller.phone}</City>
+             <RatingComponent value={review}/>
+             </ProductInfo>
          </InnerContainer>
          <InfoContainer>
-             <Title>{product.title}</Title>
+             <Title1>{product.title}</Title1>
              <Desc></Desc>
              <Price>{product.price * quantity}</Price>
             

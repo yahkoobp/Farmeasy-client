@@ -29,11 +29,11 @@ const Wrapper = styled.div`
 `
 const Title = styled.h1`
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 600;
+    text-align: center;
 `
 const Form = styled.form`
     display:flex;
-
     flex-direction: column;
 `
 const Input = styled.input`
@@ -41,15 +41,18 @@ const Input = styled.input`
     min-width: 40%;
     margin: 10px 0px;
     padding:15px;
-    color:darkgreen;
+    color:black;
     font-size:15px;
+    outline:none;
     font-weight: 600;
+    border:none;
+    border-bottom :1px solid gray;
 `
 const Button = styled.button`
     width:100%;
     border: none;
     padding :15px 20px;
-    background-color: teal;
+    background-color:teal;
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
@@ -96,7 +99,7 @@ const Login = () => {
         <Form onSubmit={handleSubmit}>
             <Input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder='Email' required autoFocus/>
             <Input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='Password' required/>
-            <Button type="submit">LOGIN</Button>
+            <Button type="submit">{isFetching ? <span>Loading...</span> : <span>LOGIN</span>}< /Button>
             { isError ? <Error>Invalid username or password</Error>:<></>}
             <Links>
             <Options>Forgot Password?</Options>

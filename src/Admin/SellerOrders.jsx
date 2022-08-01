@@ -1,4 +1,4 @@
-import { Add, Remove } from '@material-ui/icons';
+import { Add, CheckCircle, Remove } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
@@ -46,6 +46,7 @@ const ProductDetail = styled.div`
   flex: 2;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   margin:5px 0px;
 `;
 
@@ -85,16 +86,20 @@ const PriceDetail = styled.div`
 const DeliveryInfo = styled.button`
   border:none;
   color:white;
-  padding:10px;
-  background-color:green;
+  padding:3px;
+  background-color:teal;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   margin-left: 200px;
   margin-right: 50px;
   border-radius: 5px;
+  border:2px solid black;
+  -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
+    box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
+
   &:hover{
-    background-color:#2ba613 ;
+    background-color:#08545b ;
   }
   
   
@@ -125,8 +130,9 @@ const Hr= styled.hr`
 const SellerOrders = () => {
 
   const [orders,setOrders] = useState([])
-  const user = useSelector((state)=>state.user)
-  const user_id = user.currentUser.data._id 
+  const seller = useSelector((state)=>state.user)
+  const user_id = seller.currentUser.data._id
+  console.log(user_id) 
 
 
   useEffect(()=>{
@@ -146,8 +152,11 @@ const SellerOrders = () => {
 
 
 
-  const handleClick =  (p_id)=>{
-     axios.put(`http://localhost:5000/api/seller/delivery/${p_id}`)
+  const handleClick =  (p_id,u_id)=>{
+     axios.put(`http://localhost:5000/api/seller/delivery/${p_id}/?user=${u_id}`)
+     const res = axios.put(`http://localhost:5000/api/seller/deliveryInfo/${user_id}/?user=${u_id}`)
+     console.log(res)
+     
   }
   
   return(
@@ -157,7 +166,7 @@ const SellerOrders = () => {
           <Title>YOUR ORDERS</Title>
           <Bottom>
               <Info>
-                  {orders.map(order =>
+                  {[...orders].reverse().map(order =>
                       <Product>
                       <ProductDetail>
                           <Details>
@@ -170,11 +179,12 @@ const SellerOrders = () => {
 
                               
                           </Details>
+                          { order.isDelivered ? <h3 style={{color:"green",marginRight:"30px"}}> <div style={{display:"flex",alignItems:"center",margin:"5px"}}><CheckCircle style={{margin:"5px"}}/> Delivered</div></h3> :
                           <DeliveryInfo 
                           onClick={()=>{ 
                             const confirm = window.confirm("The product will be marked as delivered")
                             if(confirm===true)
-                            handleClick(order.product._id)}}>Mark as Delivered</DeliveryInfo>
+                            handleClick(order.product._id,order.user_id)}}>mark as delivered</DeliveryInfo>}
                       </ProductDetail>
                   </Product>)}
               </Info>

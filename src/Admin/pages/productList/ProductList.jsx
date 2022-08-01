@@ -8,6 +8,7 @@ import axios from "axios"
 import { useSelector } from "react-redux";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
+import LoginNavbar from "../../../components/LoginNavbar";
 
 export default function ProductList() {
 const [products,setProducts] = useState([])
@@ -107,11 +108,10 @@ const seller = useSelector((state)=>state.user.currentUser)
       />
     </div> :
     
-      <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
-        
-      <h1 style={{color:"red"}}>You are not allowed to sell at this moment...</h1>
+      <div style={{height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",backgroundColor:"#dfdfbf"}}>
+      <h3 style={{color:"red"}}>Sorry....You are not allowed to sell at this moment...</h3>
       <Link to ="/seller-request">
-      <button style={{border:"none",backgroundColor:"green",color:"white",borderRadius:"4px",padding:"10px",margin:"30px",cursor:"pointer"}}>Become a seller</button>
+      <button style={{border:"none",backgroundColor:"orange",color:"black",borderRadius:"4px",padding:"10px",margin:"30px",cursor:"pointer",fontWeight:600}}>Become a seller</button>
       </Link>
       </div>
 }

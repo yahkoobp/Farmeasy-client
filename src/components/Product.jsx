@@ -13,6 +13,7 @@ const Info = styled.div`
     left:0px;
     z-index:3;
     display:flex;
+    flex-direction:column;
     align-items: center;
     justify-content: center;
     transition:all 0.5s ease;
@@ -53,7 +54,6 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0px;
 `
 const Icon = styled.div`
     width:40px;
@@ -82,7 +82,7 @@ const Product = ({item}) => {
 
   <Container>
     <Circle></Circle>
-    <Image src={item.image}/>
+      <Image src={item.image ? item.image : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}/>
     <Info>
          <h2 style={{color:"white"}}>{item.title}</h2>
          <Link to ={`/${item.category}/${item.subcat}`}>

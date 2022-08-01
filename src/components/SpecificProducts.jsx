@@ -13,7 +13,8 @@ const Container = styled.div`
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-content: center;
+    justify-content:center;
 `
 const Title = styled.h1`
  text-align: center;
@@ -54,6 +55,8 @@ const SpecificProducts = ({subcat,filters,sort}) => {
   },[subcat,filters,products])
 
   // console.log(filteredproducts)
+
+
     
 
   useEffect(() => {
@@ -77,9 +80,9 @@ const SpecificProducts = ({subcat,filters,sort}) => {
       <Title>{subcat}</Title>
   <Container>
        { subcat 
-      ? filteredproducts.map(item =>(
+      ? [...filteredproducts].reverse().map(item =>(
             <SpecificProduct item={item} key={item._id}/>))
-        : products
+        : [...products].reverse()
         .map((item)=><SpecificProduct item={item} key={item._id}/>)}
    </Container>
    </OuterContainer>

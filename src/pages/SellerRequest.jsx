@@ -9,9 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
     width:100vw;
     height: 100vh;
-    background: linear-gradient(rgba(255,255,255,0.5),
-    rgba(255,255,255,0.5)),
-     url("https://images.pexels.com/photos/6508827/pexels-photo-6508827.jpeg?auto=compress&cs=tinysrgb&w=1260") center;
+    background: linear-gradient(#0000007a,
+    #0000007b),
+     url("https://images.pexels.com/photos/2280567/pexels-photo-2280567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1") center center;
+     background-size: cover;
      display:flex;
      background-size: cover;
      align-items: center;

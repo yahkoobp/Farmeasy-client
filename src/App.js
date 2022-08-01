@@ -41,6 +41,7 @@ import SellerOrders from "./Admin/SellerOrders";
 import AdminLogin from "./pages/AdminLogin";
 import SellerList from "./Admin/SellerList";
 import SellerRequests from "./Admin/SellerRequests";
+import Review from "./components/Review";
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
           <Route path="/rating" element={<RatingComponent/>}/>
           <Route path ="/confirm-order" element = {<Order/>}/>
           <Route path ="/orders" element = {<Orders/>}/>
+          <Route path ="/review/:pid" element={<Review/>}/>
           <Route path ="/order-success" element = {<OrdersSuccess/>}/>
           <Route path="/loading" element={<Loading/>}/>
           <Route path="/admin-login" element={admin?<Navigate to ="/users"/>:<AdminLogin/>}/>

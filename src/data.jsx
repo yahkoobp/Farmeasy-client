@@ -1,8 +1,8 @@
 export const sliderData = [
     {
         id:1,
-        title:"vegitables",
-        image:"https://media.istockphoto.com/photos/fresh-vegitables-picture-id172862539?b=1&k=20&m=172862539&s=612x612&w=0&h=h9t9bsitHdo4bmVk-elGZhD4CI8EetT66YVLqoR7pr4=",
+        title:"vegetables",
+        image:"https://media.istockphoto.com/photos/fresh-vegetables-picture-id172862539?b=1&k=20&m=172862539&s=612x612&w=0&h=h9t9bsitHdo4bmVk-elGZhD4CI8EetT66YVLqoR7pr4=",
         desc:"Somethingaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     {
@@ -21,7 +21,7 @@ export const sliderData = [
 export const categories = [
     {
         id:1,
-        title:"vegitables",
+        title:"vegetables",
         image:"https://images.pexels.com/photos/2733918/pexels-photo-2733918.jpeg?auto=compress&cs=tinysrgb&w=600",
         desc:"Somethingaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
@@ -105,7 +105,7 @@ export const allproducts =[
     },
     {
         id:2,
-        cat:"Vegitables",
+        cat:"vegetables",
         subcat:"Tomato",
         details:"something..",
         price :"25 rs",
@@ -125,7 +125,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",
@@ -134,7 +134,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",
@@ -143,7 +143,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",
@@ -152,7 +152,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",
@@ -161,7 +161,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",
@@ -170,7 +170,7 @@ export const allproducts =[
     // },
     // {
     //     id:4,
-    //     cat:"Vegitables",
+    //     cat:"vegetables",
     //     subcat:"Potato",
     //     price :"30rs",
     //     seller:"Yahkoob P",

@@ -19,15 +19,16 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color:#e3e3cb
 `
 const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid teal;
     padding:30px;
-    border-radius: 4px;
+    border-radius: 5px;
+    background-color: white;
     -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31); 
     box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.31);
 `
@@ -38,9 +39,10 @@ const Input = styled.input`
     padding:10px;
     margin:15px;
     width:250px;
-    border:1px solid teal;
+    border:none ;
+    border-bottom: 0.5px solid gray;
     outline: none;
-    border-radius: 5px;
+    border-radius: 0px;
     background-color:transparent;
     
 `
@@ -50,15 +52,16 @@ const TextArea = styled.textarea`
     padding:10px;
     margin:15px;
     width:250px;
-    border:1px solid teal;
+    border:none;
+    border-bottom: 0.5px solid gray;
     outline: none;
-    border-radius:4px;
+    border-radius:0px;
     
     
 
 `
 const Price = styled.h4`
-    font-weight:250;
+    font-weight:600;
     font-size: 18px;
 
 `
@@ -83,6 +86,8 @@ const Order = () => {
     const user_id = user.currentUser.data._id 
     const [bag,setBag] = useState([])
     const navigate = useNavigate()
+    const isDelivered = false ;
+
 
     useEffect(()=>{
 
@@ -109,14 +114,17 @@ const Order = () => {
     const data=new FormData(e.target)
     const finalData=Object.fromEntries(data.entries())
     console.log(finalData)
-        axios.post (`http://localhost:5000/api/orders/${user_id}`,{...status,bag})
-    .then((res) => {
-
-    }).catch((error) => {
-        console.log(error.response.data)
-    });
+    bag.map((product)=>(
+        axios.post (`http://localhost:5000/api/orders/${user_id}`,{product})
+        .then((res) => {
+    
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+    ))
+       
      bag.map((product)=>(
-        axios.post (`http://localhost:5000/api/seller/orders/${product.seller._id}`,{...finalData,product})
+        axios.post (`http://localhost:5000/api/seller/orders/${product.seller._id}`,{user_id,isDelivered,...finalData,product})
         .then((res) => {
     
         }).catch((error) => {
@@ -139,7 +147,7 @@ const Order = () => {
             <Input type ="text" name ="firstname" placeholder="Name" required/>
             <Input type = "number" name="phone" min="1" placeholder = "Mobile Number" required/>
             <TextArea name="address" placeholder='Address' required/>
-            <Price>Amount to be paid :Rs {total}.00</Price>
+            <Price>Total Amount :Rs {total}.00</Price>
             <Button type="submit">Confirm</Button>
             </Form>
         </Wrapper>
