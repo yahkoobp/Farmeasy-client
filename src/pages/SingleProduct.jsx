@@ -96,7 +96,7 @@ const AmountContainer = styled.div`
     font-weight: 700;
 `
 const Amount = styled.span`
-    width:30px;
+    width:60px;
     height: 30px;
     border-radius: 10px;
     border:1px solid teal;
@@ -261,7 +261,7 @@ const SingleProduct = () => {
              <AddContainer>
                  <AmountContainer>
                      <Remove onClick={()=>handleQuantity("dec")}/>
-                     <Amount>{quantity}</Amount>
+                     <Amount>{quantity} Kg</Amount>
                      <Add onClick={()=>handleQuantity("inc")}/>
                  </AmountContainer>
                  <Button onClick = {handleClick}> ADD TO BASKET</Button>

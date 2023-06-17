@@ -96,7 +96,7 @@ export default function UserList() {
         <Th>Action</Th>
         </Tr>
 
-        {users.map((user)=>(
+        {[...users].reverse().map((user)=>(
         <Tr>
             <Td>{user._id}</Td>
             <Td>{user.firstname}</Td>

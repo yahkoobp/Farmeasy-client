@@ -39,6 +39,7 @@ const Intro = styled.p`
     font-weight:700;
     color:white;
     transition: 2s ease-in-out;
+    
     ${mobile({fontSize:"20px"})}
   
 `

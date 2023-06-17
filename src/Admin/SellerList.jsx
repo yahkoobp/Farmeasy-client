@@ -93,7 +93,7 @@ export default function SellerList() {
         <Th>Action</Th>
         </Tr>
 
-        {sellers.map((seller)=>(
+        {[...sellers].reverse().map((seller)=>(
         <Tr>
             <Td>{seller._id}</Td>
             <Td>{seller.firstname}</Td>

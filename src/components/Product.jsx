@@ -29,13 +29,36 @@ const Container = styled.div`
     display:flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    background-color: #b1deee;
     position:relative;
     border-radius: 0px;
     -webkit-box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.07); 
 box-shadow: 1px 5px 10px 2px rgba(0,0,0,0.07);
     &:hover ${Info}{
         opacity:1;
+    }
+    
+`
+const Skelton = styled.div`
+    flex:1;
+    margin:5px;
+    width: 280px;
+    height:350px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   
+    position:relative;
+    
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+    @keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
     }
 `
 
@@ -71,6 +94,7 @@ const Icon = styled.div`
         transform:scale(1.1)
     }
 `
+
 
 const Product = ({item}) => {
     // const navigate = useNavigate()

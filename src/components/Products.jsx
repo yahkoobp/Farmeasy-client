@@ -12,6 +12,8 @@ const Container = styled.div`
    justify-content: center; */
 
 `
+
+
 const ProductContainer = styled.div`
     margin:0px 50px;
     padding: 20px;
@@ -49,10 +51,10 @@ const Products = ({cat}) => {
   <Container>
     <Text>Explore Products</Text>
       <ProductContainer>
-       {
-      [...products].reverse().slice(0,8).map(item =>(
-            <Product item={item} key={item.id}/>
-        ))}
+      {
+       [...products].reverse().slice(0,8).map(item =>(
+             <Product item={item} key={item.id}/>
+         ))} 
       </ProductContainer>
    </Container>
   )

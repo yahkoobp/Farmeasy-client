@@ -46,7 +46,7 @@ const ProductDetail = styled.div`
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content:space-between;
   margin:5px 0px;
 `;
 
@@ -86,7 +86,7 @@ const PriceDetail = styled.div`
 const DeliveryInfo = styled.button`
   border:none;
   color:white;
-  padding:3px;
+  padding:5px;
   background-color:teal;
   cursor: pointer;
   font-size: 15px;
