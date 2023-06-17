@@ -97,7 +97,7 @@ const Introduction = ()=> {
            
           <Intro>Every time you buy organic, you are persuading more farmers to grow organic</Intro>
           <Link to="/register">
-          <button style={{padding:"15px",width:"200px",backgroundColor:"orange",border:"none",fontWeight:700,fontSize:"15px",color:"white",marginLeft:"40px",cursor:"pointer"}}>SIGN UP</button>
+          <button style={{padding:"15px",width:"200px",backgroundColor:"red",border:"none",fontWeight:700,fontSize:"15px",color:"white",marginLeft:"40px",cursor:"pointer"}}>SIGN UP</button>
           </Link>
           <Link to="/login">
           <button style={{padding:"15px",width:"200px",backgroundColor:"orange",border:"none",fontWeight:700,fontSize:"15px",color:"white",marginLeft:"40px",cursor:"pointer"}}>LOGIN</button>
