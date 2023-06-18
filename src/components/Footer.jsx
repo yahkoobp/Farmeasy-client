@@ -110,8 +110,8 @@ const Footer = () => {
       </Center> */}
       <Right>
           <Title>Contact</Title>
-          <ContactItem> <Room style={{marginRight:"10px"}}/> Govt Engineering College , wayanad </ContactItem>
-          <ContactItem> <Phone style={{marginRight:"10px"}}/>+91 8943871306 </ContactItem>
+          <ContactItem> <Room style={{marginRight:"10px"}}/> SIMAT , Vavannur </ContactItem>
+          <ContactItem> <Phone style={{marginRight:"10px"}}/>+91 8943871235 </ContactItem>
           <ContactItem> <MailOutline style={{marginRight:"10px"}}/> farmeasy@gmail.com</ContactItem>
       </Right>
   </Container>

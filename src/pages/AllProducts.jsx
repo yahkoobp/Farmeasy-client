@@ -53,9 +53,9 @@ console.log(cat)
              <Option value="">
               Locality
             </Option>
-            <Option value="Mananthavady">Mananthavady</Option>
-            <Option value="Kalpetta">Kalpetta</Option>
-            <Option value="Sulthan Bathery">Sulthan Bathery</Option>
+            <Option value="Perinthalmanna">Perinthalmanna</Option>
+            <Option value="Pattambi">Pattambi</Option>
+            <Option value="pulamanthole">pulamanthole</Option>
              </Select>
              </Filter>
            <Filter>

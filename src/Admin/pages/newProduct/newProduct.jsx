@@ -163,9 +163,9 @@ export default function NewProduct() {
         <div className="addProductItem">
           <select   name="Locality" id="locality">
             <option value="">Select Locality</option>
-            <option value="Kalpetta">Kalpetta</option>
-            <option value="Mananthavady">Mananthavady</option>
-            <option value="Sulthan bathery">Sulthan bathery</option>
+            <option value="Perinthalmanna">Perinthalmanna</option>
+            <option value="Pattambi">Pattambi</option>
+            <option value="pulamanthole">pulamanthole</option>
           </select>
           </div>
         <Button disabled = {per !== null && per < 100 } className="addProductButton">Create</Button>
